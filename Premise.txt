@@ -1,0 +1,48 @@
+12/05/12
+
+1. Initial Prototype Done and working (reasonably) reliably
+
+-- TODO: 
+
+1. Lines in between boxes
+	- Snapped to certain values, = 90 degree turns where appropriate, and only as such
+	- Theres probably a nice algorithm online, if not reverse engineer from either Word's method, or the way some of the electronic circuit design programs work. Possibly A* with a large weighting to 90 degree angles, and spacing either side of a path. Bounding can be a 'as the crow flies, which expands.
+
+2. Sub/App tools to add boxes in a subform where the line is towards a box, 
+	- And App where it is a parent of the given box
+	
+3. Arrangement of data in tree form with constant
+
+4. Multiple possibilities for data on the wall
+
+5. True aging
+	- thumb up/thumb down model with transparency been variant based on properties of these.
+	- Age decreases value on which transparency is based ( higher values mean less transparent
+	- if val < 0 = deletion of object
+	- objectTranspar-- every 30 mins
+	- objects all have initial value of 255
+	- Thumb down/up = (pos/neg) (1 / numUsers * 1 / numTotalUniqueUsers * 100)
+	
+6. infinte workspace = Kinetic Example on location of original script
+	- Bars bottom and right to scroll left/right
+	- when at maximum of actual objects = +10 x/ || 10 y units
+	- 
+7. Snapping/Constraint of box movement spacesure.
+	- This is going to be rather complicated. Basically we need to make sure that the placement of children of boxes do not go an inappropriate distance away from their parents.
+	- Unfortunately its this 'inappropriate distance' that's going to be hard to work out
+	- Boundings will also have to be held on the length and width and x/y values of the already existing boxes.
+	- But to not waste processing we want  to only consider thoses boxes within a certain distance
+	- We could split all children of certain boxes into layers. But this is difficult considering that different boxes are children of multiple boxes..
+	- We also need to consider aeasthetics, such as symmetry, into the decision
+	- On top of all this, this needs to be a very efficient algorithm, which will be calculated upon the _beginDrag function. 
+	
+8. Word Wrapping where appropriate
+	- We want our boxes to take up as aesthertically nice a shape as possible. They also need to be able to have calculations performed on said shape very easily. As such, it would be best to limit their shape to the rectangle.
+	- To make them aesthertically nice, we should make them try to approach the shape of the square as much as possible. 
+	
+9. Optimisation.
+	- The simplified proof of concept doesn't work very well on tablets/ mobile devices as of yet. I want to fix this, Ways I have been considering to do this are via teh decrretion of the POST transmissions, compressing with gzip and reducing the xml as much as possible; trying to get a more raw implementation of communication going, via a HTML string message of which the very order of the string matters to the data. Raw Socket implementations (if possible), and other, more magical ideas.
+	- The code also needs cleaning up and optimising too. The Kinetic Script is too bloated for my implementation, and could be cut down to size after careful analysis of the control flow. 
+	- The server is also too complicated. Implementations in Python, while great for prototyping, are just not fast enough. Direct implentations in C or, dare I say it, PHP would maybe be faster. Ruby is a possibility, but not the best of what I want right now.
+	- Conversion of the code to use JQuery/ CoffeeScript would improve ease of reading, and maybe speed a little where I don't use my own bastardised algorithms
+	
